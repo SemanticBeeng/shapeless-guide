@@ -1,5 +1,6 @@
 
 # Created by https://www.gitignore.io/api/scala,ensime,intellij,eclipse,sbt,sublimetext,emacs,vim
+.idea
 
 ### Scala ###
 *.class
@@ -14,6 +15,8 @@ target/
 lib_managed/
 src_managed/
 project/boot/
+project/.boot/
+project/.ivy/
 project/plugins/project/
 
 # Scala-IDE specific

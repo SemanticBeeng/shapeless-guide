@@ -35,4 +35,26 @@ object Main extends Demo {
   // println(encodeCsv(true))
 }
 
+/**
+  * book pages 27 - 28
+  */
+import shapeless.{::, HList, HNil}
 
+def createCsvEncoder[A](f: A ⇒ List[String]) =
+  new CsvEncoder[A] {
+    override def encode(value: A) = f(value)
+  }
+
+implicit val hnilEncoder : CsvEncoder[HNil] =
+  createCsvEncoder(hnil ⇒ Nil)
+
+implicit def hlistEncoder[H, T <: HList](
+  implicit
+    hEnc : CsvEncoder[H],
+    tEnc : CsvEncoder[T]
+
+) : CsvEncoder[H :: T] = {
+    createCsvEncoder {
+      case h :: t ⇒ hEnc.encode(h) ++ tEnc.encode(t)
+  }
+}
