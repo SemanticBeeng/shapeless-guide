@@ -52,7 +52,7 @@ lazy val migrations =
 lazy val mapping =
   project.in(file("mapping")).dependsOn(common)
 
-lazy val root = project.in(file("."))
+lazy val shapeless_guide = project.in(file("."))
   .aggregate(
     helloworld,
     representations,
