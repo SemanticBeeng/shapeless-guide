@@ -52,6 +52,9 @@ lazy val migrations =
 lazy val mapping =
   project.in(file("mapping")).dependsOn(common)
 
+lazy val chapters =
+  project.in(file("chapters")).dependsOn(common)
+
 lazy val shapeless_guide = project.in(file("."))
   .aggregate(
     helloworld,
@@ -62,5 +65,6 @@ lazy val shapeless_guide = project.in(file("."))
     numfields,
     random,
     migrations,
-    mapping
+    mapping,
+    chapters
   )
