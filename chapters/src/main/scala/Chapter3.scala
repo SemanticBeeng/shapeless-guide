@@ -22,10 +22,10 @@ trait Chapter3 {
 
   // Typeclass interface
   // Primitive typeclass instances
-  implicit val stringEncoder: CsvEncoder[String] = x => List(x)
-  implicit val intEncoder: CsvEncoder[Int] = x => List(x.toString)
-  implicit val booleanEncoder: CsvEncoder[Boolean] = x => List(if(x) "yes" else "no")
-  implicit val doubleEncoder: CsvEncoder[Double] = x => List(x.toString)
+  implicit val stringEncoder: CsvEncoder[String] = { x : String => List(x) }
+  implicit val intEncoder: CsvEncoder[Int] = { x : Int => List(x.toString) }
+  implicit val booleanEncoder: CsvEncoder[Boolean] = { x : Boolean => List(if(x) "yes" else "no") }
+  implicit val doubleEncoder: CsvEncoder[Double] = { x : Double => List(x.toString) }
 
   // HList typeclass instances
   implicit val hnilEncoder: CsvEncoder[HNil] = Function.const(Nil)
@@ -104,3 +104,4 @@ object Chapter3 extends Chapter3
 
 // Chapter3 as Object, extending App, makes it unusable in the repl (some DelayedInit thing perhaps).
 object Chapter3App extends App with Chapter3
+
